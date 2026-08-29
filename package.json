@@ -1,0 +1,15 @@
+{
+  "name": "brandops-site",
+  "version": "1.0.0",
+  "description": "BrandOps agency website — a unit by House of Notmade Studio Pvt Ltd",
+  "scripts": {
+    "start": "serve . --single -l $PORT",
+    "dev": "serve . --single -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
