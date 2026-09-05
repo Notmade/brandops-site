@@ -3,33 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrandOps — From idea to live brand, we handle it all</title>
+  <title>BrandOps — High-performance Shopify stores, compliance & company formation</title>
   <meta name="description" content="BrandOps handles Shopify stores, GST/VAT compliance, company formation & more. A unit by House of Notmade Studio Pvt Ltd. Serving India, UAE, Saudi Arabia, USA & Canada.">
   <meta property="og:title" content="BrandOps — From idea to live brand">
   <meta property="og:description" content="Shopify stores, company formation, and compliance — fast. A unit by House of Notmade Studio Pvt Ltd.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #F7F5F2;
-      --ink: #0C0C0B;
-      --accent: #FF3D00;
-      --muted: rgba(12,12,11,0.45);
-      --border: rgba(12,12,11,0.1);
-      --f-head: 'Syne', sans-serif;
+      --white: #FFFFFF;
+      --navy: #0D1B4B;
+      --orange: #F5A623;
+      --navy-dark: #081236;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --f-head: 'Manrope', sans-serif;
       --f-body: 'Inter', sans-serif;
-      --f-mono: 'DM Mono', monospace;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--ink);
+      background: var(--white);
+      color: var(--text);
       font-family: var(--f-body);
       overflow-x: hidden;
       line-height: 1.6;
@@ -40,830 +41,891 @@
     #loader {
       position: fixed;
       inset: 0;
-      background: var(--ink);
+      background: var(--navy);
       z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 2rem;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
-    #loader.out { opacity: 0; visibility: hidden; pointer-events: none; }
-
-    .loader-wordmark {
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
       font-family: var(--f-head);
+      font-size: 2rem;
       font-weight: 800;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      color: #F7F5F2;
-      letter-spacing: -0.03em;
-      overflow: hidden;
-      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.02em;
     }
-    .loader-wordmark span {
-      display: inline-block;
-      transform: translateY(110%);
-      animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.15s forwards;
-    }
-    .loader-wordmark em {
-      color: var(--accent);
-      font-style: normal;
-      display: inline-block;
-      transform: translateY(110%);
-      animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
-    }
-
-    .loader-track {
-      width: 180px;
-      height: 1.5px;
-      background: rgba(247,245,242,0.1);
+    .loader-logo span { color: var(--orange); }
+    .loader-bar-wrap {
+      width: 200px;
+      height: 3px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 99px;
       overflow: hidden;
     }
-    .loader-fill {
+    .loader-bar {
       height: 100%;
-      width: 0;
-      background: var(--accent);
-      animation: fillBar 1.3s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+      width: 0%;
+      background: var(--orange);
+      border-radius: 99px;
+      animation: loadprogress 1.1s ease forwards;
     }
-
-    @keyframes slideUp {
-      to { transform: translateY(0); }
-    }
-    @keyframes fillBar {
-      to { width: 100%; }
-    }
+    @keyframes loadprogress { to { width: 100%; } }
 
     /* ─── NAV ─── */
-    #nav {
-      position: fixed;
-      inset-block-start: 0;
-      inset-inline: 0;
-      z-index: 200;
-      padding: 1.125rem 2rem;
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(247,245,242,0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      height: 68px;
+      gap: 1.5rem;
     }
-    #nav.scrolled {
-      border-color: var(--border);
-      box-shadow: 0 1px 0 var(--border);
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      text-decoration: none;
     }
-
-    .nav-brand { display: flex; flex-direction: column; gap: 0.05rem; }
     .nav-logo {
       font-family: var(--f-head);
+      font-size: 1.35rem;
       font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--ink);
-      letter-spacing: -0.03em;
+      color: var(--navy);
+      letter-spacing: -0.02em;
       line-height: 1;
     }
-    .nav-logo .acc { color: var(--accent); }
-    .nav-sub {
-      font-family: var(--f-mono);
-      font-size: 0.575rem;
+    .nav-logo .dot { color: var(--orange); }
+    .nav-unit {
+      font-size: 0.6rem;
       color: var(--muted);
+      font-weight: 500;
       letter-spacing: 0.02em;
+      line-height: 1;
     }
-
-    .btn-nav {
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .btn-orange {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.575rem 1.25rem;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: var(--f-body);
-      font-weight: 500;
-      font-size: 0.8125rem;
+      background: var(--orange);
+      color: var(--navy);
+      font-family: var(--f-head);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 99px;
       text-decoration: none;
       border: none;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      letter-spacing: 0.01em;
-    }
-    .btn-nav:hover { background: var(--accent); transform: translateY(-1px); }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      padding: 9rem 2rem 5rem;
-    }
-    .hero-inner { max-width: 980px; margin: 0 auto; width: 100%; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--f-mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .eyebrow.show { opacity: 1; }
-
-    .live-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      animation: pulse 2.2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity:1; transform:scale(1); }
-      50% { opacity:0.45; transform:scale(0.75); }
-    }
-
-    .hero-h1 {
-      font-family: var(--f-head);
-      font-weight: 800;
-      font-size: clamp(2.6rem, 6.5vw, 5.75rem);
-      line-height: 1.04;
-      letter-spacing: -0.035em;
-      margin-bottom: 2rem;
-    }
-    .h1-line { display: block; overflow: hidden; }
-    .h1-line-inner {
-      display: block;
-      transform: translateY(110%);
-      transition: transform 0.95s cubic-bezier(0.16,1,0.3,1);
-    }
-    .h1-line-inner.up { transform: translateY(0); }
-    .h1-acc { color: var(--accent); }
-
-    .hero-p {
-      font-size: 1.075rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      line-height: 1.75;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .hero-p.show { opacity:1; transform:translateY(0); }
-
-    .hero-btns {
-      display: flex;
-      gap: 0.875rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .hero-btns.show { opacity:1; transform:translateY(0); }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.875rem 2rem;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.9375rem;
-      text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,61,0,0.35); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.875rem 2rem;
-      border: 1.5px solid var(--border);
-      color: var(--ink);
-      font-weight: 500;
-      font-size: 0.9375rem;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-ghost:hover { border-color: var(--ink); background: rgba(12,12,11,0.04); }
-
-    /* ─── COUNTRIES STRIP ─── */
-    .strip {
-      background: var(--ink);
-      padding: 1.1rem 0;
-      overflow: hidden;
-    }
-    .strip-track {
-      display: flex;
-      gap: 1.5rem;
-      width: max-content;
-      animation: marquee 24s linear infinite;
-    }
-    .strip-track:hover { animation-play-state: paused; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .fpill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 1.2rem;
-      border: 1px solid rgba(247,245,242,0.12);
-      border-radius: 100px;
-      font-family: var(--f-mono);
-      font-size: 0.7875rem;
-      color: rgba(247,245,242,0.75);
       white-space: nowrap;
-      transition: border-color 0.2s, color 0.2s;
-      cursor: default;
     }
-    .fpill:hover { border-color: var(--accent); color: #fff; }
-    .fpill .fi { font-size: 1.05rem; }
-
-    /* ─── SHARED SECTION ─── */
-    .sec { padding: 6rem 2rem; }
-    .wrap { max-width: 1200px; margin: 0 auto; }
-    .slabel {
-      font-family: var(--f-mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.875rem;
-    }
-    .stitle {
+    .btn-orange:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,166,35,0.4); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: var(--navy);
       font-family: var(--f-head);
       font-weight: 700;
-      font-size: clamp(1.9rem, 4vw, 3.25rem);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 99px;
+      text-decoration: none;
+      border: 2px solid var(--navy);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
     }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
 
-    /* ─── SCROLL REVEAL ─── */
-    .rv {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-    }
-    .rv.on { opacity:1; transform:translateY(0); }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.4s; }
-
-    /* ─── STATS ─── */
-    #stats {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 3.5rem 2rem;
-    }
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
+    /* ─── HERO ─── */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
       max-width: 1200px;
       margin: 0 auto;
     }
-    .stat {
-      text-align: center;
-      padding: 2.25rem 1.5rem;
-      border-right: 1px solid var(--border);
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245,166,35,0.12);
+      color: var(--orange);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
     }
-    .stat:last-child { border-right: none; }
-    .stat-n {
+    .hero-eyebrow::before { content: "●"; font-size: 0.5rem; }
+    .hero-headline {
       font-family: var(--f-head);
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
       font-weight: 800;
-      font-size: clamp(2.5rem, 5vw, 4.25rem);
-      letter-spacing: -0.045em;
-      line-height: 1;
-      margin-bottom: 0.5rem;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
     }
-    .stat-n .a { color: var(--accent); }
-    .stat-l {
-      font-family: var(--f-mono);
-      font-size: 0.7rem;
+    .hero-headline em {
+      font-style: italic;
+      color: var(--navy);
+    }
+    .hero-headline .line {
+      display: block;
+      transform: translateY(120%);
+      animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-headline .line:nth-child(1) { animation-delay: 0.1s; }
+    .hero-headline .line:nth-child(2) { animation-delay: 0.2s; }
+    .hero-headline .line:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes slideUp { to { transform: translateY(0); } }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 2.25rem;
+      font-weight: 400;
+    }
+    .hero-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-btns .btn-orange { font-size: 1rem; padding: 0.8rem 1.75rem; }
+    .hero-btns .btn-outline { font-size: 1rem; padding: 0.8rem 1.75rem; }
+
+    /* ─── CLIENT STRIP ─── */
+    .client-strip {
+      margin-top: 3.5rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .client-strip-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
       color: var(--muted);
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .client-scroller {
+      display: flex;
+      gap: 4rem;
+      animation: scroll-left 18s linear infinite;
+      width: max-content;
+    }
+    .client-scroller-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    .client-item {
+      font-family: var(--f-head);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      opacity: 0.45;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .client-item:hover { opacity: 1; }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── MARQUEE STRIPS ─── */
+    .marquee-section {
+      position: relative;
+      padding: 3rem 0;
+      overflow: hidden;
+      margin: 0;
+    }
+    .marquee-strip {
+      position: relative;
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-strip:first-child {
+      background: var(--navy);
+      transform: rotate(-3deg) scaleX(1.1);
+      margin-bottom: -1rem;
+      z-index: 1;
+    }
+    .marquee-strip:last-child {
+      background: var(--orange);
+      transform: rotate(3deg) scaleX(1.1);
+      z-index: 2;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 0;
+      animation: marquee-run 25s linear infinite;
+    }
+    .marquee-strip:last-child .marquee-track {
+      animation-direction: reverse;
+    }
+    .marquee-item {
+      font-family: var(--f-head);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0 2.5rem;
+    }
+    .marquee-strip:first-child .marquee-item { color: var(--white); }
+    .marquee-strip:last-child .marquee-item { color: var(--navy); }
+    @keyframes marquee-run {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── STATS ─── */
+    .stats-section {
+      padding: 4.5rem 2rem;
+      background: var(--white);
+    }
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .stat-item:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(245,166,35,0.12); }
+    .stat-num {
+      font-family: var(--f-head);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .stat-num .stat-suffix { color: var(--orange); }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+    .section-tag::before { content: "—"; }
+    .section-title {
+      font-family: var(--f-head);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
     }
 
     /* ─── SERVICES ─── */
-    #services { background: var(--bg); }
-    .svc-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-bottom: 4rem;
-      align-items: end;
+    .services-section {
+      padding: 5rem 2rem;
+      background: #f8f9fb;
     }
-    .svc-desc { color: var(--muted); font-size: 1rem; line-height: 1.75; }
-
-    .svc-grid {
+    .services-header {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+    .services-grid {
+      max-width: 1100px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
       border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    .svc-card {
-      padding: 2.75rem 2.5rem;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
+    .service-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 8px 30px rgba(245,166,35,0.1);
+      transform: translateY(-2px);
     }
-    .svc-card:nth-child(2n) { border-right: none; }
-    .svc-card:nth-child(n+3) { border-bottom: none; }
-    .svc-card:hover { background: rgba(255,61,0,0.025); }
-    .svc-card::before {
-      content:'';
-      position: absolute;
-      left:0; top:0;
-      width: 3px; height:0;
-      background: var(--accent);
-      transition: height 0.35s ease;
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(245,166,35,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
     }
-    .svc-card:hover::before { height: 100%; }
-
-    .svc-num {
-      font-family: var(--f-mono);
-      font-size: 0.64rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-    }
-    .svc-ico { font-size: 2rem; margin-bottom: 1rem; }
-    .svc-name {
+    .service-icon svg { width: 24px; height: 24px; }
+    .service-title {
       font-family: var(--f-head);
+      font-size: 1.15rem;
       font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
     }
-    .svc-text { color: var(--muted); font-size: 0.925rem; line-height: 1.7; }
-
-    /* ─── PORTFOLIO ─── */
-    #portfolio {
-      background: var(--ink);
-      color: var(--bg);
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
     }
-    #portfolio .slabel { color: rgba(247,245,242,0.35); }
-    #portfolio .stitle { color: var(--bg); }
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 99px;
+      background: rgba(13,27,75,0.06);
+      color: var(--navy);
+      letter-spacing: 0.02em;
+    }
 
-    .port-grid {
+    /* ─── WORK ─── */
+    .work-section {
+      padding: 5rem 2rem;
+      background: var(--white);
+    }
+    .work-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .work-header { margin-bottom: 3rem; }
+    .work-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 3rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
-    .bcard {
-      border-radius: 8px;
+    .work-card {
+      border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(247,245,242,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #080808;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .bcard:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(0,0,0,0.4); }
-
-    .bc-chrome {
-      background: #1C1C1B;
-      padding: 0.7rem 1rem;
+    .work-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+    .work-card.gold { background: #1a1209; }
+    .browser-chrome {
+      background: #1e1e1e;
+      padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    .bc-dots { display:flex; gap:0.3rem; }
-    .dot { width:10px; height:10px; border-radius:50%; }
-    .dr { background:#FF5F57; } .dy { background:#FEBC2E; } .dg { background:#28C840; }
-    .bc-url {
-      flex:1;
-      background: #252524;
-      border-radius: 4px;
-      padding: 0.275rem 0.75rem;
-      font-family: var(--f-mono);
-      font-size: 0.675rem;
-      color: rgba(247,245,242,0.4);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .browser-dots { display: flex; gap: 5px; }
+    .browser-dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
     }
-
-    .bc-screen {
-      height: 240px;
-      background: linear-gradient(135deg, #1D1D1C 0%, #141413 100%);
+    .browser-dots span:nth-child(1) { background: #ff5f57; }
+    .browser-dots span:nth-child(2) { background: #febc2e; }
+    .browser-dots span:nth-child(3) { background: #28c840; }
+    .browser-url {
+      flex: 1;
+      background: #2d2d2d;
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.72rem;
+      color: #9ca3af;
+      font-family: var(--f-body);
+    }
+    .work-preview {
+      padding: 2.5rem 2rem;
+      min-height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    .bc-orb {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.05;
-      animation: orbFloat 7s ease-in-out infinite;
-    }
-    .bc-orb:nth-child(1) { width:150px; height:150px; top:-40px; right:-40px; }
-    .bc-orb:nth-child(2) { width:100px; height:100px; bottom:-25px; left:-25px; animation-delay:-3.5s; }
-    @keyframes orbFloat {
-      0%,100% { transform:translateY(0) scale(1); }
-      50% { transform:translateY(-12px) scale(1.06); }
-    }
-    .bc-label {
-      position: relative;
-      z-index:1;
-      text-align:center;
-    }
-    .bc-sname {
+    .preview-brand {
       font-family: var(--f-head);
+      font-size: 2.5rem;
       font-weight: 800;
-      font-size: 2rem;
-      color: rgba(247,245,242,0.9);
-      letter-spacing:-0.035em;
-      margin-bottom: 0.25rem;
+      letter-spacing: -0.04em;
     }
-    .bc-surl {
-      font-family: var(--f-mono);
-      font-size: 0.7rem;
-      color: rgba(247,245,242,0.25);
+    .notmade-preview .preview-brand { color: #ffffff; }
+    .zeeya-preview .preview-brand { color: #d4a843; }
+    .preview-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
     }
-
-    .bc-foot {
-      padding: 1.125rem 1.5rem;
-      background: #131312;
+    .work-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .bc-title { font-family: var(--f-head); font-weight:600; font-size:0.9375rem; color: var(--bg); }
-    .bc-type { font-family: var(--f-mono); font-size:0.625rem; color:rgba(247,245,242,0.3); margin-top:0.1rem; }
-
-    .visit {
-      display: inline-flex;
+    .work-brand-name {
+      font-family: var(--f-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .work-cat {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .work-visit {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-decoration: none;
+      display: flex;
       align-items: center;
       gap: 0.3rem;
-      font-family: var(--f-mono);
-      font-size: 0.7375rem;
-      color: var(--accent);
-      text-decoration: none;
       transition: gap 0.2s;
     }
-    .visit:hover { gap:0.55rem; }
+    .work-visit:hover { gap: 0.5rem; }
 
-    /* ─── GLOBAL REACH ─── */
-    #global { padding: 6rem 2rem; }
-    .global-wrap {
+    /* ─── COUNTRIES ─── */
+    .countries-section {
+      padding: 5rem 2rem;
+      background: #f8f9fb;
+    }
+    .countries-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .countries-header { margin-bottom: 3rem; }
+    .countries-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      margin-top: 3rem;
-    }
-
-    .crow {
-      display: flex;
-      align-items: center;
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--border);
+    }
+    .country-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 1rem;
+      text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.3s;
+      transform: translateX(-40px);
       opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    .crow:first-child { border-top: 1px solid var(--border); }
-    .crow.on { opacity:1; transform:translateX(0); }
-
-    .cf { font-size: 1.65rem; flex-shrink:0; }
-    .ci { flex:1; }
-    .cn { font-family: var(--f-head); font-weight:600; font-size:1rem; }
-    .cc { font-family: var(--f-mono); font-size:0.645rem; color:var(--muted); margin-top:0.1rem; }
-    .cbadge {
-      font-family: var(--f-mono);
-      font-size:0.6rem;
-      padding: 0.2rem 0.6rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      letter-spacing:0.05em;
-      flex-shrink:0;
+    .country-card.visible {
+      transform: translateX(0);
+      opacity: 1;
     }
-    .cbadge.hq { border-color: var(--accent); color: var(--accent); }
-
-    .globe-art {
-      background: rgba(12,12,11,0.025);
-      border: 1px solid var(--border);
-      aspect-ratio: 4/3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
+    .country-card:hover { border-color: var(--orange); box-shadow: 0 4px 20px rgba(245,166,35,0.1); }
+    .country-flag { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .country-name {
+      font-family: var(--f-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
     }
-    .globe-pin {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .pin-dot {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      position: relative;
-    }
-    .pin-dot::after {
-      content:'';
-      position:absolute;
-      inset:-5px;
-      border-radius:50%;
-      border:1px solid var(--accent);
-      animation: ripple 2.2s ease-out infinite;
-    }
-    @keyframes ripple {
-      0% { opacity:0.8; transform:scale(0.7); }
-      100% { opacity:0; transform:scale(2.8); }
-    }
-    .globe-caption {
-      position: absolute;
-      bottom: 1.25rem;
-      font-family: var(--f-mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
+    .country-cities { font-size: 0.75rem; color: var(--muted); }
 
     /* ─── PROCESS ─── */
-    #process { background: var(--ink); color: var(--bg); }
-    #process .slabel { color: rgba(247,245,242,0.35); }
-    #process .stitle { color: var(--bg); }
-
-    .proc-grid {
+    .process-section {
+      padding: 5rem 2rem;
+      background: var(--white);
+    }
+    .process-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .process-header { margin-bottom: 3rem; }
+    .process-grid {
       display: grid;
-      grid-template-columns: repeat(4,1fr);
-      border: 1px solid rgba(247,245,242,0.08);
-      margin-top: 4rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
     }
-    .proc-step {
-      padding: 2.5rem 2rem;
-      border-right: 1px solid rgba(247,245,242,0.08);
+    .process-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
       position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .proc-step:last-child { border-right: none; }
-
-    .ps-num {
-      font-family: var(--f-mono);
-      font-size: 0.64rem;
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      margin-bottom: 1.5rem;
-    }
-    .ps-title {
-      font-family: var(--f-head);
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--bg);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
-    }
-    .ps-desc { font-size: 0.875rem; color:rgba(247,245,242,0.45); line-height:1.7; }
-
-    .ps-arr {
+    .process-card::before {
+      content: '';
       position: absolute;
-      top: 2.5rem;
-      right: -0.9rem;
-      width: 1.75rem; height: 1.75rem;
-      background: var(--ink);
-      border: 1px solid rgba(247,245,242,0.1);
-      border-radius: 50%;
-      display: flex; align-items:center; justify-content:center;
-      font-size: 0.65rem;
-      color: rgba(247,245,242,0.3);
-      z-index:1;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
     }
-    .proc-step:last-child .ps-arr { display:none; }
+    .process-card:hover::before { transform: scaleX(1); }
+    .process-card:hover { border-color: var(--orange); box-shadow: 0 8px 25px rgba(245,166,35,0.1); }
+    .process-num {
+      font-family: var(--f-head);
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(13,27,75,0.1);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .process-title {
+      font-family: var(--f-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .process-desc { font-size: 0.85rem; color: var(--muted); }
 
     /* ─── CONTACT ─── */
-    #contact { padding: 6rem 2rem; }
-    .contact-grid {
+    .contact-section {
+      padding: 5rem 2rem;
+      background: #f8f9fb;
+    }
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-top: 3rem;
+      gap: 3rem;
+      align-items: start;
     }
-
-    .c-book {
-      background: var(--ink);
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .cb-tag {
-      font-family: var(--f-mono);
-      font-size: 0.62rem;
-      color: rgba(247,245,242,0.35);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-    .cb-title {
+    .contact-left {}
+    .contact-title {
       font-family: var(--f-head);
-      font-weight: 700;
-      font-size: 1.75rem;
-      color: var(--bg);
-      letter-spacing: -0.025em;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.03em;
       line-height: 1.2;
       margin-bottom: 1rem;
     }
-    .cb-desc {
-      color: rgba(247,245,242,0.45);
-      font-size: 0.9375rem;
-      line-height: 1.7;
+    .contact-para {
+      font-size: 0.95rem;
+      color: var(--muted);
       margin-bottom: 2rem;
-      flex:1;
+      line-height: 1.7;
     }
-    .cb-feats { margin-bottom: 2.25rem; }
-    .cb-feat {
+    .call-card {
+      background: var(--orange);
+      border-radius: 16px;
+      padding: 1.75rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.45rem 0;
-      color: rgba(247,245,242,0.65);
-      font-size: 0.875rem;
+      justify-content: space-between;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .cb-feat::before { content:'→'; color:var(--accent); font-size:0.7rem; flex-shrink:0; }
-
-    .btn-book {
-      display: inline-flex;
+    .call-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,166,35,0.35); }
+    .call-card-text { font-family: var(--f-head); }
+    .call-card-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(13,27,75,0.6);
+      margin-bottom: 0.3rem;
+    }
+    .call-card-heading {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .call-card-arrow {
+      width: 44px; height: 44px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      padding: 1rem 2rem;
-      background: var(--accent);
-      color: #fff;
+      color: var(--white);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
       font-weight: 600;
-      font-size: 0.9375rem;
-      text-decoration: none;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      font-family: var(--f-body);
+      font-size: 0.875rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--orange); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .btn-orange-full {
+      flex: 1;
+      background: var(--orange);
+      color: var(--navy);
+      font-family: var(--f-head);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       text-align: center;
     }
-    .btn-book:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,61,0,0.4); }
-
-    .c-form { display:flex; flex-direction:column; justify-content:center; }
-    .cf-title {
+    .btn-orange-full:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,166,35,0.4); }
+    .btn-secondary {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .form-success.show { display: block; }
+    .form-success-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .form-success-title {
       font-family: var(--f-head);
+      font-size: 1.2rem;
       font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: -0.025em;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .form-success-sub { font-size: 0.9rem; color: var(--muted); }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: var(--orange);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .cta-banner-title {
+      font-family: var(--f-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.03em;
       margin-bottom: 2rem;
     }
-    .fg { margin-bottom: 1.125rem; }
-    .flabel {
-      display: block;
-      font-family: var(--f-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.45rem;
+    .cta-circle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px; height: 72px;
+      background: var(--navy);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .finput {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      background: transparent;
-      border: 1.5px solid var(--border);
-      color: var(--ink);
-      font-family: var(--f-body);
-      font-size: 0.9375rem;
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
-      -webkit-appearance: none;
-      border-radius: 0;
-    }
-    .finput:focus { border-color: var(--ink); }
-    select.finput {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230C0C0B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      cursor: pointer;
-    }
-    textarea.finput { min-height: 110px; resize: vertical; }
-
-    .btn-submit {
-      width:100%;
-      padding: 0.875rem 2rem;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: var(--f-body);
-      font-weight: 600;
-      font-size: 0.9375rem;
-      border:none;
-      cursor:pointer;
-      transition: background 0.2s;
-      display:flex; align-items:center; justify-content:center; gap:0.45rem;
-    }
-    .btn-submit:hover { background: var(--accent); }
-    .btn-submit:disabled { opacity:0.6; cursor:not-allowed; }
-
-    .form-msg {
-      margin-top:1rem;
-      padding: 0.875rem 1rem;
-      font-size:0.875rem;
-      display:none;
-      text-align:center;
-    }
-    .form-msg.ok {
-      background: rgba(0,160,90,0.07);
-      border: 1px solid rgba(0,160,90,0.2);
-      color: #007A48;
-      display: block;
-    }
-    .form-msg.err {
-      background: rgba(255,61,0,0.06);
-      border: 1px solid rgba(255,61,0,0.15);
-      color: var(--accent);
-      display: block;
-    }
+    .cta-circle-btn:hover { transform: scale(1.08) rotate(-10deg); box-shadow: 0 10px 30px rgba(13,27,75,0.3); }
 
     /* ─── FOOTER ─── */
     footer {
-      background: var(--ink);
-      padding: 4rem 2rem 2.5rem;
+      background: var(--navy);
+      padding: 4rem 2rem 2rem;
     }
-    .ft { max-width: 1200px; margin: 0 auto; }
-    .ft-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
       padding-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(247,245,242,0.07);
-      margin-bottom: 1.75rem;
-      gap: 2rem;
-      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .ft-logo { font-family:var(--f-head); font-weight:800; font-size:1.5rem; color:var(--bg); letter-spacing:-0.03em; }
-    .ft-logo .a { color:var(--accent); }
-    .ft-sub { font-family:var(--f-mono); font-size:0.6rem; color:rgba(247,245,242,0.3); margin-top:0.2rem; }
-
-    .ft-links { display:flex; gap:2rem; flex-wrap:wrap; align-items:center; }
-    .ft-link {
+    .footer-logo {
+      font-family: var(--f-head);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .footer-logo span { color: var(--orange); }
+    .footer-unit {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 1rem;
+    }
+    .footer-tagline {
       font-size: 0.875rem;
-      color: rgba(247,245,242,0.45);
-      text-decoration:none;
-      transition:color 0.2s;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
     }
-    .ft-link:hover { color: var(--bg); }
-
-    .ft-bot {
+    .footer-col-title {
+      font-family: var(--f-head);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
     }
-    .ft-copy { font-family:var(--f-mono); font-size:0.64rem; color:rgba(247,245,242,0.25); }
-    .ft-tag { font-family:var(--f-mono); font-size:0.64rem; color:rgba(247,245,242,0.25); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-email {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-email:hover { color: var(--orange); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .stagger { transition-delay: 0s; }
+    .stagger:nth-child(2) { transition-delay: 0.1s; }
+    .stagger:nth-child(3) { transition-delay: 0.2s; }
+    .stagger:nth-child(4) { transition-delay: 0.3s; }
 
     /* ─── RESPONSIVE ─── */
-    @media (max-width:1024px) {
-      .stats-row { grid-template-columns: repeat(2,1fr); }
-      .stat:nth-child(2) { border-right:none; }
-      .stat:nth-child(3) { border-right: 1px solid var(--border); }
-      .stat:nth-child(1),.stat:nth-child(2) { border-bottom: 1px solid var(--border); }
-      .svc-header { grid-template-columns:1fr; gap:1.5rem; }
-      .proc-grid { grid-template-columns: repeat(2,1fr); }
-      .proc-step:nth-child(2) { border-right:none; }
-      .proc-step:nth-child(2) .ps-arr { display:none; }
-      .proc-step:nth-child(3),.proc-step:nth-child(4) { border-top: 1px solid rgba(247,245,242,0.08); }
+    @media (max-width: 900px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .countries-grid { grid-template-columns: repeat(3, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
     }
-
-    @media (max-width:768px) {
-      #nav { padding: 1rem 1.25rem; }
-      .nav-sub { display:none; }
-      #hero { padding: 7rem 1.25rem 4rem; }
-      .sec { padding: 4rem 1.25rem; }
-      #stats { padding: 2.5rem 1.25rem; }
-      #portfolio, #process, #contact, #global { padding: 4rem 1.25rem; }
-      footer { padding: 3rem 1.25rem 2rem; }
-      .port-grid, .global-wrap, .contact-grid, .svc-grid { grid-template-columns:1fr; }
-      .svc-card { border-right:none !important; }
-      .svc-card:nth-child(n+3) { border-bottom: 1px solid var(--border) !important; }
-      .svc-card:last-child { border-bottom:none !important; }
-      .proc-grid { grid-template-columns:1fr; }
-      .proc-step { border-right:none !important; border-bottom: 1px solid rgba(247,245,242,0.08); }
-      .proc-step:last-child { border-bottom:none; }
-      .ps-arr { display:none !important; }
-      .stats-row { grid-template-columns: repeat(2,1fr); }
-      .stat { border-right: none !important; }
-      .stat:nth-child(odd) { border-right: 1px solid var(--border) !important; }
-      .stat:nth-child(1),.stat:nth-child(2) { border-bottom: 1px solid var(--border); }
-      .ft-top { flex-direction:column; gap:1.5rem; }
-      .ft-bot { flex-direction:column; text-align:center; }
-      .ft-links { gap:1.25rem; }
-      .global-wrap { gap:3rem; }
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .countries-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero { padding: 4rem 1.5rem 3rem; }
     }
   </style>
 </head>
@@ -871,470 +933,508 @@
 
   <!-- LOADER -->
   <div id="loader">
-    <div class="loader-wordmark">
-      <span>Brand</span><em>Ops</em>
-    </div>
-    <div class="loader-track">
-      <div class="loader-fill"></div>
+    <div class="loader-logo">Brand<span>Ops</span></div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar"></div>
     </div>
   </div>
 
   <!-- NAV -->
-  <nav id="nav">
-    <div class="nav-brand">
-      <div class="nav-logo">Brand<span class="acc">Ops</span></div>
-      <div class="nav-sub">A unit by House of Notmade Studio Pvt Ltd</div>
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="nav-logo">Brand<span class="dot">O</span>ps</div>
+        <div class="nav-unit">A unit by House of Notmade Studio Pvt Ltd</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#countries">Countries</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener" class="btn-orange">Book a Call →</a>
     </div>
-    <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener noreferrer" class="btn-nav">Book a Call →</a>
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner">
-      <div class="eyebrow" id="eyebrow">
-        <span class="live-dot"></span>
-        <span>Now onboarding — India, UAE, US & more</span>
-      </div>
-      <h1 class="hero-h1">
-        <span class="h1-line"><span class="h1-line-inner" id="hl0">From idea to live</span></span>
-        <span class="h1-line"><span class="h1-line-inner" id="hl1">brand — <span class="h1-acc">we handle</span></span></span>
-        <span class="h1-line"><span class="h1-line-inner" id="hl2">it all.</span></span>
-      </h1>
-      <p class="hero-p" id="heroP">Shopify stores, GST/VAT compliance, company formation, and everything in between. Built for founders who move fast.</p>
-      <div class="hero-btns" id="heroBtns">
-        <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Free Call →</a>
-        <a href="#services" class="btn-ghost">Explore services</a>
+  <section class="hero">
+    <div class="hero-eyebrow">Trusted by brands across 5 countries</div>
+    <h1 class="hero-headline">
+      <span class="line">High-performance Shopify stores,</span>
+      <span class="line">compliance &amp; company formation —</span>
+      <span class="line">built for brands <em>ready to lead.</em></span>
+    </h1>
+    <p class="hero-sub">From idea to launch, we handle everything.</p>
+    <div class="hero-btns">
+      <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener" class="btn-orange">Book a Free Call →</a>
+      <a href="#work" class="btn-outline">View Our Work</a>
+    </div>
+
+    <!-- Client Strip -->
+    <div class="client-strip">
+      <div class="client-strip-label">Brands we've built</div>
+      <div class="client-scroller-wrap">
+        <div class="client-scroller">
+          <span class="client-item">NOTMADE</span>
+          <span class="client-item">Zeeya Jewels</span>
+          <span class="client-item">NOTMADE</span>
+          <span class="client-item">Zeeya Jewels</span>
+          <span class="client-item">NOTMADE</span>
+          <span class="client-item">Zeeya Jewels</span>
+          <span class="client-item">NOTMADE</span>
+          <span class="client-item">Zeeya Jewels</span>
+          <span class="client-item">NOTMADE</span>
+          <span class="client-item">Zeeya Jewels</span>
+          <span class="client-item">NOTMADE</span>
+          <span class="client-item">Zeeya Jewels</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- COUNTRIES STRIP -->
-  <div class="strip">
-    <div class="strip-track" aria-label="Countries we serve">
-      <div class="fpill"><span class="fi">🇮🇳</span> India</div>
-      <div class="fpill"><span class="fi">🇦🇪</span> UAE</div>
-      <div class="fpill"><span class="fi">🇸🇦</span> Saudi Arabia</div>
-      <div class="fpill"><span class="fi">🇺🇸</span> United States</div>
-      <div class="fpill"><span class="fi">🇨🇦</span> Canada</div>
-      <div class="fpill"><span class="fi">🇮🇳</span> India</div>
-      <div class="fpill"><span class="fi">🇦🇪</span> UAE</div>
-      <div class="fpill"><span class="fi">🇸🇦</span> Saudi Arabia</div>
-      <div class="fpill"><span class="fi">🇺🇸</span> United States</div>
-      <div class="fpill"><span class="fi">🇨🇦</span> Canada</div>
-      <!-- duplicate set for seamless loop -->
-      <div class="fpill"><span class="fi">🇮🇳</span> India</div>
-      <div class="fpill"><span class="fi">🇦🇪</span> UAE</div>
-      <div class="fpill"><span class="fi">🇸🇦</span> Saudi Arabia</div>
-      <div class="fpill"><span class="fi">🇺🇸</span> United States</div>
-      <div class="fpill"><span class="fi">🇨🇦</span> Canada</div>
-      <div class="fpill"><span class="fi">🇮🇳</span> India</div>
-      <div class="fpill"><span class="fi">🇦🇪</span> UAE</div>
-      <div class="fpill"><span class="fi">🇸🇦</span> Saudi Arabia</div>
-      <div class="fpill"><span class="fi">🇺🇸</span> United States</div>
-      <div class="fpill"><span class="fi">🇨🇦</span> Canada</div>
+  <!-- MARQUEE STRIPS -->
+  <div class="marquee-section">
+    <div class="marquee-strip">
+      <div class="marquee-track" aria-hidden="true">
+        <span class="marquee-item">Shopify Store Build ✦</span>
+        <span class="marquee-item">Dashboard Management ✦</span>
+        <span class="marquee-item">GST &amp; VAT Filing ✦</span>
+        <span class="marquee-item">Company Formation ✦</span>
+        <span class="marquee-item">Idea to Launch ✦</span>
+        <span class="marquee-item">Shopify Store Build ✦</span>
+        <span class="marquee-item">Dashboard Management ✦</span>
+        <span class="marquee-item">GST &amp; VAT Filing ✦</span>
+        <span class="marquee-item">Company Formation ✦</span>
+        <span class="marquee-item">Idea to Launch ✦</span>
+      </div>
+    </div>
+    <div class="marquee-strip">
+      <div class="marquee-track" aria-hidden="true">
+        <span class="marquee-item">Shopify Store Build ✦</span>
+        <span class="marquee-item">Dashboard Management ✦</span>
+        <span class="marquee-item">GST &amp; VAT Filing ✦</span>
+        <span class="marquee-item">Company Formation ✦</span>
+        <span class="marquee-item">Idea to Launch ✦</span>
+        <span class="marquee-item">Shopify Store Build ✦</span>
+        <span class="marquee-item">Dashboard Management ✦</span>
+        <span class="marquee-item">GST &amp; VAT Filing ✦</span>
+        <span class="marquee-item">Company Formation ✦</span>
+        <span class="marquee-item">Idea to Launch ✦</span>
+      </div>
     </div>
   </div>
 
   <!-- STATS -->
-  <div id="stats">
-    <div class="stats-row">
-      <div class="stat rv">
-        <div class="stat-n">48<span class="a">h</span></div>
-        <div class="stat-l">Store Delivery</div>
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="stat-item reveal stagger">
+        <div class="stat-num"><span class="counter" data-target="48">0</span><span class="stat-suffix">h</span></div>
+        <div class="stat-label">Store Delivery</div>
       </div>
-      <div class="stat rv d1">
-        <div class="stat-n">7<span class="a">d</span></div>
-        <div class="stat-l">Company Incorporation</div>
+      <div class="stat-item reveal stagger">
+        <div class="stat-num"><span class="counter" data-target="7">0</span><span class="stat-suffix"> Days</span></div>
+        <div class="stat-label">Incorporation</div>
       </div>
-      <div class="stat rv d2">
-        <div class="stat-n">5<span class="a">+</span></div>
-        <div class="stat-l">Countries Served</div>
+      <div class="stat-item reveal stagger">
+        <div class="stat-num"><span class="counter" data-target="5">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-label">Countries Served</div>
       </div>
-      <div class="stat rv d3">
-        <div class="stat-n">₹<span class="a">0</span></div>
-        <div class="stat-l">Compliance Penalties</div>
+      <div class="stat-item reveal stagger">
+        <div class="stat-num">₹<span class="counter" data-target="0">0</span></div>
+        <div class="stat-label">Penalties Filed</div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- SERVICES -->
-  <section id="services" class="sec">
-    <div class="wrap">
-      <div class="svc-header">
-        <div>
-          <div class="slabel rv">What we do</div>
-          <h2 class="stitle rv d1">Everything your brand needs to operate globally</h2>
+  <section class="services-section" id="services">
+    <div class="services-header reveal">
+      <div class="section-tag">What we do</div>
+      <h2 class="section-title">Everything your brand needs, under one roof.</h2>
+      <p class="section-sub">From your first Shopify sale to your last compliance filing — we've got it.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal stagger">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
         </div>
-        <p class="svc-desc rv d2">From day-zero setup to ongoing operations — we handle the complexity so you can focus entirely on building your brand.</p>
+        <div class="service-title">Shopify Store Builds</div>
+        <div class="service-desc">Custom-designed, conversion-optimised Shopify stores delivered in 48 hours. Built for D2C brands that mean business.</div>
+        <div class="service-tags">
+          <span class="tag">Custom Design</span>
+          <span class="tag">48h Delivery</span>
+          <span class="tag">Mobile-First</span>
+          <span class="tag">SEO Ready</span>
+        </div>
       </div>
-      <div class="svc-grid">
-        <div class="svc-card rv">
-          <div class="svc-num">01</div>
-          <div class="svc-ico">🛍️</div>
-          <div class="svc-name">Shopify Store Builds</div>
-          <p class="svc-text">Custom Shopify storefronts designed for conversion. From theme customization to full custom development — live in 48 hours.</p>
+      <div class="service-card reveal stagger">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3h18v18H3zM3 9h18M9 21V9"/>
+          </svg>
         </div>
-        <div class="svc-card rv d1">
-          <div class="svc-num">02</div>
-          <div class="svc-ico">📊</div>
-          <div class="svc-name">Dashboard Management</div>
-          <p class="svc-text">Real-time analytics, inventory oversight, and performance reporting. Complete visibility into every corner of your store.</p>
+        <div class="service-title">Dashboard Management</div>
+        <div class="service-desc">Full backend ops — inventory, orders, analytics, and store updates handled by us so you can focus on growing.</div>
+        <div class="service-tags">
+          <span class="tag">Inventory</span>
+          <span class="tag">Order Ops</span>
+          <span class="tag">Analytics</span>
+          <span class="tag">Monthly Reports</span>
         </div>
-        <div class="svc-card rv d2">
-          <div class="svc-num">03</div>
-          <div class="svc-ico">📋</div>
-          <div class="svc-name">GST / VAT / Compliance</div>
-          <p class="svc-text">End-to-end tax registration and ongoing filing across India, UAE, Saudi Arabia, and beyond. Zero penalties, fully managed.</p>
+      </div>
+      <div class="service-card reveal stagger">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+          </svg>
         </div>
-        <div class="svc-card rv d3">
-          <div class="svc-num">04</div>
-          <div class="svc-ico">🏢</div>
-          <div class="svc-name">Company Formation</div>
-          <p class="svc-text">Incorporate in India, UAE, or the US within 7 days. We handle documents, filings, and corporate structure end to end.</p>
+        <div class="service-title">GST, VAT &amp; Compliance</div>
+        <div class="service-desc">Zero penalties, zero stress. We handle GST filing, VAT registration, and cross-border tax compliance across India, UAE, and beyond.</div>
+        <div class="service-tags">
+          <span class="tag">GST Filing</span>
+          <span class="tag">VAT Registration</span>
+          <span class="tag">Cross-Border</span>
+          <span class="tag">₹0 Penalties</span>
+        </div>
+      </div>
+      <div class="service-card reveal stagger">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="service-title">Company Formation (Pvt Ltd &amp; LLP)</div>
+        <div class="service-desc">Incorporate your company in India, UAE, or the US in 7 days. We handle all documentation, filings, and compliance setup.</div>
+        <div class="service-tags">
+          <span class="tag">Pvt Ltd</span>
+          <span class="tag">LLP</span>
+          <span class="tag">7-Day Setup</span>
+          <span class="tag">Multi-Country</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="sec">
-    <div class="wrap">
-      <div class="slabel rv">Portfolio</div>
-      <h2 class="stitle rv d1">Brands we've built</h2>
-      <div class="port-grid">
-        <!-- NOTMADE -->
-        <div class="bcard rv d2">
-          <div class="bc-chrome">
-            <div class="bc-dots">
-              <div class="dot dr"></div>
-              <div class="dot dy"></div>
-              <div class="dot dg"></div>
+  <!-- WORK -->
+  <section class="work-section" id="work">
+    <div class="work-inner">
+      <div class="work-header reveal">
+        <div class="section-tag">Portfolio</div>
+        <h2 class="section-title">Real Results for Real Brands</h2>
+        <p class="section-sub">Brands that trusted us from zero to live.</p>
+      </div>
+      <div class="work-grid">
+        <div class="work-card reveal stagger">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <span></span><span></span><span></span>
             </div>
-            <div class="bc-url">notmade.in</div>
+            <div class="browser-url">notmade.in</div>
           </div>
-          <div class="bc-screen">
-            <div class="bc-orb"></div>
-            <div class="bc-orb"></div>
-            <div class="bc-label">
-              <div class="bc-sname">NOTMADE</div>
-              <div class="bc-surl">notmade.in</div>
-            </div>
+          <div class="work-preview notmade-preview">
+            <div class="preview-brand">NOTMADE</div>
+            <div class="preview-tag">Delhi NCR Streetwear D2C</div>
           </div>
-          <div class="bc-foot">
+          <div class="work-footer">
             <div>
-              <div class="bc-title">NOTMADE</div>
-              <div class="bc-type">Brand Studio · Shopify</div>
+              <div class="work-brand-name">NOTMADE</div>
+              <div class="work-cat">Shopify Store · Brand Identity</div>
             </div>
-            <a href="https://notmade.in" target="_blank" rel="noopener noreferrer" class="visit">Visit →</a>
+            <a href="https://notmade.in" target="_blank" rel="noopener" class="work-visit">Visit →</a>
           </div>
         </div>
-        <!-- Zeeya Jewels -->
-        <div class="bcard rv d3">
-          <div class="bc-chrome">
-            <div class="bc-dots">
-              <div class="dot dr"></div>
-              <div class="dot dy"></div>
-              <div class="dot dg"></div>
+        <div class="work-card gold reveal stagger">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <span></span><span></span><span></span>
             </div>
-            <div class="bc-url">zeyaajewels.com</div>
+            <div class="browser-url">zeyaajewels.com</div>
           </div>
-          <div class="bc-screen">
-            <div class="bc-orb"></div>
-            <div class="bc-orb"></div>
-            <div class="bc-label">
-              <div class="bc-sname">Zeeya Jewels</div>
-              <div class="bc-surl">zeyaajewels.com</div>
-            </div>
+          <div class="work-preview zeeya-preview">
+            <div class="preview-brand">Zeeya Jewels</div>
+            <div class="preview-tag">Fine Jewellery Brand</div>
           </div>
-          <div class="bc-foot">
+          <div class="work-footer">
             <div>
-              <div class="bc-title">Zeeya Jewels</div>
-              <div class="bc-type">E-commerce · Shopify</div>
+              <div class="work-brand-name">Zeeya Jewels</div>
+              <div class="work-cat">Shopify Store · E-commerce</div>
             </div>
-            <a href="https://zeyaajewels.com" target="_blank" rel="noopener noreferrer" class="visit">Visit →</a>
+            <a href="https://zeyaajewels.com" target="_blank" rel="noopener" class="work-visit">Visit →</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GLOBAL REACH -->
-  <section id="global" class="sec">
-    <div class="wrap">
-      <div class="global-wrap">
-        <div>
-          <div class="slabel rv">Global Reach</div>
-          <h2 class="stitle rv d1">Operating across 5+ countries</h2>
-          <div id="countryList" style="margin-top:2rem;">
-            <div class="crow">
-              <span class="cf">🇮🇳</span>
-              <div class="ci">
-                <div class="cn">India</div>
-                <div class="cc">Mumbai · Delhi · Bengaluru · Hyderabad</div>
-              </div>
-              <span class="cbadge hq">HQ</span>
-            </div>
-            <div class="crow">
-              <span class="cf">🇦🇪</span>
-              <div class="ci">
-                <div class="cn">UAE</div>
-                <div class="cc">Dubai · Abu Dhabi · Sharjah</div>
-              </div>
-              <span class="cbadge">Active</span>
-            </div>
-            <div class="crow">
-              <span class="cf">🇸🇦</span>
-              <div class="ci">
-                <div class="cn">Saudi Arabia</div>
-                <div class="cc">Riyadh · Jeddah</div>
-              </div>
-              <span class="cbadge">Active</span>
-            </div>
-            <div class="crow">
-              <span class="cf">🇺🇸</span>
-              <div class="ci">
-                <div class="cn">United States</div>
-                <div class="cc">Delaware · California · New York</div>
-              </div>
-              <span class="cbadge">Active</span>
-            </div>
-            <div class="crow">
-              <span class="cf">🇨🇦</span>
-              <div class="ci">
-                <div class="cn">Canada</div>
-                <div class="cc">Ontario · British Columbia</div>
-              </div>
-              <span class="cbadge">Active</span>
-            </div>
-          </div>
+  <!-- COUNTRIES -->
+  <section class="countries-section" id="countries">
+    <div class="countries-inner">
+      <div class="countries-header reveal">
+        <div class="section-tag">Global reach</div>
+        <h2 class="section-title">We work with founders across 5 countries</h2>
+        <p class="section-sub">Wherever you're building from, we're with you.</p>
+      </div>
+      <div class="countries-grid">
+        <div class="country-card">
+          <div class="country-flag">🇮🇳</div>
+          <div class="country-name">India</div>
+          <div class="country-cities">Delhi NCR, Mumbai</div>
         </div>
-        <div class="globe-art rv">
-          <!-- Approximate pin positions for the 5 regions -->
-          <div class="globe-pin" style="top:52%;left:62%;">
-            <div class="pin-dot" style="animation-delay:0s;"></div>
-          </div>
-          <div class="globe-pin" style="top:38%;left:56%;">
-            <div class="pin-dot" style="animation-delay:0.6s;"></div>
-          </div>
-          <div class="globe-pin" style="top:41%;left:57.5%;">
-            <div class="pin-dot" style="animation-delay:1.2s;"></div>
-          </div>
-          <div class="globe-pin" style="top:32%;left:20%;">
-            <div class="pin-dot" style="animation-delay:0.3s;"></div>
-          </div>
-          <div class="globe-pin" style="top:27%;left:16%;">
-            <div class="pin-dot" style="animation-delay:0.9s;"></div>
-          </div>
-          <div class="globe-caption">5 active markets</div>
+        <div class="country-card">
+          <div class="country-flag">🇦🇪</div>
+          <div class="country-name">UAE</div>
+          <div class="country-cities">Dubai, Abu Dhabi</div>
+        </div>
+        <div class="country-card">
+          <div class="country-flag">🇸🇦</div>
+          <div class="country-name">Saudi Arabia</div>
+          <div class="country-cities">Riyadh, Jeddah</div>
+        </div>
+        <div class="country-card">
+          <div class="country-flag">🇺🇸</div>
+          <div class="country-name">United States</div>
+          <div class="country-cities">New York, Los Angeles</div>
+        </div>
+        <div class="country-card">
+          <div class="country-flag">🇨🇦</div>
+          <div class="country-name">Canada</div>
+          <div class="country-cities">Toronto, Vancouver</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROCESS -->
-  <section id="process" class="sec">
-    <div class="wrap">
-      <div class="slabel rv">How it works</div>
-      <h2 class="stitle rv d1">Simple process, fast results</h2>
-      <div class="proc-grid">
-        <div class="proc-step rv">
-          <div class="ps-num">STEP 01</div>
-          <div class="ps-title">Discovery Call</div>
-          <p class="ps-desc">Book a free 30-minute call. We understand your goals, markets, and timeline — then map exactly what you need.</p>
-          <div class="ps-arr">→</div>
+  <section class="process-section">
+    <div class="process-inner">
+      <div class="process-header reveal">
+        <div class="section-tag">How it works</div>
+        <h2 class="section-title">Four steps to your live brand</h2>
+        <p class="section-sub">Simple, transparent, and fast.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal stagger">
+          <div class="process-num">01</div>
+          <div class="process-title">Reach Out</div>
+          <div class="process-desc">Book a free call. Tell us about your brand, your goals, and what you need. No sales pressure.</div>
         </div>
-        <div class="proc-step rv d1">
-          <div class="ps-num">STEP 02</div>
-          <div class="ps-title">Proposal & Kickoff</div>
-          <p class="ps-desc">You receive a clear scope, pricing, and timeline. Once approved, we kick off the same day — no delays.</p>
-          <div class="ps-arr">→</div>
+        <div class="process-card reveal stagger">
+          <div class="process-num">02</div>
+          <div class="process-title">Fixed Scope &amp; Price</div>
+          <div class="process-desc">We send you a clear proposal — fixed price, fixed scope, fixed timeline. No surprises.</div>
         </div>
-        <div class="proc-step rv d2">
-          <div class="ps-num">STEP 03</div>
-          <div class="ps-title">Build & Execute</div>
-          <p class="ps-desc">Our team builds your store, handles filings, and manages incorporations with daily updates and full transparency.</p>
-          <div class="ps-arr">→</div>
+        <div class="process-card reveal stagger">
+          <div class="process-num">03</div>
+          <div class="process-title">We Build &amp; File</div>
+          <div class="process-desc">Our team handles everything — store build, compliance filings, company docs. You stay in the loop.</div>
         </div>
-        <div class="proc-step rv d3">
-          <div class="ps-num">STEP 04</div>
-          <div class="ps-title">Launch & Support</div>
-          <p class="ps-desc">Go live with confidence. We stay on for ongoing management, compliance, and growth support long-term.</p>
+        <div class="process-card reveal stagger">
+          <div class="process-num">04</div>
+          <div class="process-title">You Go Live</div>
+          <div class="process-desc">Your store is live, your company is incorporated, your filings are done. Start selling.</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="sec">
-    <div class="wrap">
-      <div class="slabel rv">Get in touch</div>
-      <h2 class="stitle rv d1">Ready to build your brand?</h2>
-      <div class="contact-grid">
-        <!-- Book a call -->
-        <div class="c-book rv d1">
-          <div class="cb-tag">Free consultation</div>
-          <div class="cb-title">Book a discovery call with our team</div>
-          <p class="cb-desc">30 minutes. No pressure. We'll understand your business and show you exactly how we can help you move faster.</p>
-          <div class="cb-feats">
-            <div class="cb-feat">Free 30-minute strategy session</div>
-            <div class="cb-feat">Tailored proposal within 24 hours</div>
-            <div class="cb-feat">Clear pricing, zero hidden fees</div>
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left reveal">
+        <div class="section-tag">Get in touch</div>
+        <h2 class="contact-title">Let's build something real together.</h2>
+        <p class="contact-para">Whether you're starting from scratch or scaling up — we'd love to hear about your brand. Fill the form or book a call directly.</p>
+        <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener" class="call-card">
+          <div class="call-card-text">
+            <div class="call-card-label">Free 30-min consultation</div>
+            <div class="call-card-heading">Book a call with Shivam →</div>
           </div>
-          <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener noreferrer" class="btn-book">Book a Free Call →</a>
-        </div>
-        <!-- Contact form -->
-        <div class="c-form rv d2">
-          <div class="cf-title">Or send us a message</div>
-          <form id="contactForm" action="https://formspree.io/f/shivam@brandops.shop" method="POST" novalidate>
-            <div class="fg">
-              <label class="flabel" for="fname">Your Name</label>
-              <input type="text" id="fname" name="name" class="finput" placeholder="Jane Smith" required>
-            </div>
-            <div class="fg">
-              <label class="flabel" for="femail">Email Address</label>
-              <input type="email" id="femail" name="email" class="finput" placeholder="jane@company.com" required>
-            </div>
-            <div class="fg">
-              <label class="flabel" for="fservice">What do you need?</label>
-              <select id="fservice" name="service" class="finput">
-                <option value="">Select a service</option>
-                <option value="Shopify Store Build">Shopify Store Build</option>
-                <option value="Dashboard Management">Dashboard Management</option>
-                <option value="GST / VAT / Compliance">GST / VAT / Compliance</option>
-                <option value="Company Formation">Company Formation</option>
-                <option value="Multiple Services">Multiple Services</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label class="flabel" for="fmsg">Message</label>
-              <textarea id="fmsg" name="message" class="finput" placeholder="Tell us about your project..." required></textarea>
-            </div>
-            <input type="hidden" name="_replyto" value="shivam@brandops.shop">
-            <input type="hidden" name="_subject" value="New BrandOps Inquiry">
-            <button type="submit" class="btn-submit" id="submitBtn">Send Message →</button>
-            <div class="form-msg" id="formMsg"></div>
-          </form>
+          <div class="call-card-arrow">↗</div>
+        </a>
+      </div>
+      <div class="contact-right reveal">
+        <div class="form-card">
+          <div id="form-body">
+            <form id="contact-form" action="https://formspree.io/f/xpwzgqjk" method="POST">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">First Name</label>
+                  <input type="text" id="fname" name="first_name" placeholder="Rahul" required>
+                </div>
+                <div class="form-group">
+                  <label for="lname">Last Name</label>
+                  <input type="text" id="lname" name="last_name" placeholder="Sharma" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="rahul@brand.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="service">Service Needed</label>
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select a service…</option>
+                  <option>Shopify Store Build</option>
+                  <option>Dashboard Management</option>
+                  <option>GST &amp; Compliance</option>
+                  <option>Pvt Ltd Formation</option>
+                  <option>LLP Formation</option>
+                  <option>Multiple Services</option>
+                  <option>Not sure</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your brand and what you need…"></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn-orange-full">Send Message →</button>
+                <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener" class="btn-secondary">Book a call instead</a>
+              </div>
+            </form>
+          </div>
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">✅</div>
+            <div class="form-success-title">Message sent!</div>
+            <div class="form-success-sub">We'll get back to you within 24 hours. Or <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600">book a call</a> for a faster response.</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2 class="cta-banner-title">Transform Your Brand with BrandOps</h2>
+    <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener" class="cta-circle-btn" aria-label="Book a call">↗</a>
+  </section>
+
   <!-- FOOTER -->
   <footer>
-    <div class="ft">
-      <div class="ft-top">
+    <div class="footer-inner">
+      <div class="footer-top">
         <div>
-          <div class="ft-logo">Brand<span class="a">Ops</span></div>
-          <div class="ft-sub">A unit by House of Notmade Studio Pvt Ltd</div>
+          <div class="footer-logo">Brand<span>Ops</span></div>
+          <div class="footer-unit">A unit by House of Notmade Studio Pvt Ltd</div>
+          <div class="footer-tagline">High-performance Shopify stores, compliance &amp; company formation — built for brands ready to lead.</div>
         </div>
-        <div class="ft-links">
-          <a href="#services" class="ft-link">Services</a>
-          <a href="#portfolio" class="ft-link">Portfolio</a>
-          <a href="#global" class="ft-link">Global</a>
-          <a href="#process" class="ft-link">Process</a>
-          <a href="#contact" class="ft-link">Contact</a>
-          <a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener noreferrer" class="ft-link">Book a Call</a>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Shopify Store Builds</a></li>
+            <li><a href="#services">Dashboard Management</a></li>
+            <li><a href="#services">GST &amp; Compliance</a></li>
+            <li><a href="#services">Company Formation</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="#work">Our Work</a></li>
+            <li><a href="#countries">Countries</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="https://zbooking.in/CdTNJ" target="_blank" rel="noopener">Book a Call</a></li>
+            <li><a href="mailto:shivam@brandops.shop">shivam@brandops.shop</a></li>
+          </ul>
         </div>
       </div>
-      <div class="ft-bot">
-        <div class="ft-copy">© 2026 BrandOps · House of Notmade Studio Pvt Ltd · All rights reserved</div>
-        <div class="ft-tag">Built for founders who move fast</div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 BrandOps. All rights reserved.</div>
+        <a href="mailto:shivam@brandops.shop" class="footer-email">shivam@brandops.shop</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // ─── LOADER ───
+    // ── LOADER
     window.addEventListener('load', () => {
       setTimeout(() => {
-        document.getElementById('loader').classList.add('out');
-        // hero lines
-        ['hl0','hl1','hl2'].forEach((id, i) => {
-          setTimeout(() => document.getElementById(id).classList.add('up'), i * 160);
-        });
-        setTimeout(() => document.getElementById('eyebrow').classList.add('show'), 100);
-        setTimeout(() => document.getElementById('heroP').classList.add('show'), 550);
-        setTimeout(() => document.getElementById('heroBtns').classList.add('show'), 750);
-      }, 1450);
+        document.getElementById('loader').classList.add('hidden');
+      }, 1300);
     });
 
-    // ─── NAV SCROLL ───
-    const nav = document.getElementById('nav');
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          nav.classList.toggle('scrolled', window.scrollY > 24);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // ─── SCROLL REVEAL ───
+    // ── SCROLL REVEAL
+    const revealEls = document.querySelectorAll('.reveal');
     const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
-
-    // ─── COUNTRY ROW SLIDE-IN ───
-    const countryObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.crow').forEach((row, i) => {
-            setTimeout(() => row.classList.add('on'), i * 110);
-          });
-          countryObs.unobserve(entry.target);
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.15 });
-    const cl = document.getElementById('countryList');
-    if (cl) countryObs.observe(cl);
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObs.observe(el));
 
-    // ─── CONTACT FORM ───
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formMsg = document.getElementById('formMsg');
+    // ── COUNTER ANIMATION
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      if (target === 0) { el.textContent = '0'; return; }
+      const duration = 1400;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(timer);
+      }, 16);
+    }
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
 
-    form && form.addEventListener('submit', async (e) => {
+    // ── COUNTRY CARDS STAGGER
+    const countryCards = document.querySelectorAll('.country-card');
+    const countryObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = Array.from(countryCards).indexOf(e.target);
+          setTimeout(() => e.target.classList.add('visible'), idx * 100);
+          countryObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    countryCards.forEach(el => countryObs.observe(el));
+
+    // ── FORM SUBMIT
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const name = document.getElementById('fname').value.trim();
-      const email = document.getElementById('femail').value.trim();
-      const message = document.getElementById('fmsg').value.trim();
-
-      if (!name || !email || !message) {
-        formMsg.textContent = 'Please fill in all required fields.';
-        formMsg.className = 'form-msg err';
-        return;
-      }
-
-      submitBtn.textContent = 'Sending…';
-      submitBtn.disabled = true;
-      formMsg.className = 'form-msg';
-
+      const btn = form.querySelector('.btn-orange-full');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
       try {
         const res = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+          headers: { Accept: 'application/json' }
         });
-
         if (res.ok) {
-          formMsg.textContent = 'Message sent! We\'ll be in touch within 24 hours.';
-          formMsg.className = 'form-msg ok';
-          form.reset();
+          document.getElementById('form-body').style.display = 'none';
+          document.getElementById('form-success').classList.add('show');
         } else {
-          throw new Error('server');
+          throw new Error('form error');
         }
       } catch {
-        // fallback to mailto
-        const sub = encodeURIComponent('BrandOps Inquiry from ' + name);
-        const body = encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')');
-        window.location.href = 'mailto:shivam@brandops.shop?subject=' + sub + '&body=' + body;
-      } finally {
-        submitBtn.textContent = 'Send Message →';
-        submitBtn.disabled = false;
+        window.location.href = `mailto:shivam@brandops.shop?subject=BrandOps Enquiry&body=${encodeURIComponent(new URLSearchParams(new FormData(form)).toString())}`;
       }
     });
   </script>
