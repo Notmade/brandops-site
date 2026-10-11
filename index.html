@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrandOps — Shopify Stores, Amazon &amp; Noon Marketplace Management, GST &amp; Company Formation</title>
   <meta name="description" content="BrandOps — marketplace management for Amazon, Flipkart, Myntra, Ajio, Meesho and Noon in India &amp; UAE, plus Shopify store builds, GST/VAT compliance and company formation. Grow organically. A unit by House of Notmade Studio.">
-  <meta name="keywords" content="BrandOps, brandops.shop, marketplace management India, marketplace management UAE, Amazon seller account management, Amazon India account management, Amazon.ae seller services, Noon seller account management, Noon marketplace UAE, Flipkart seller management, Myntra seller onboarding, Ajio seller management, Meesho seller management, ecommerce account management agency, marketplace listing optimisation, Amazon SEO, A+ content, Amazon PPC, organic marketplace growth, Shopify store builder India, Shopify agency India, GST filing for ecommerce sellers, UAE VAT registration, company formation India, Pvt Ltd registration, LLP registration, Ajman free zone company, ecommerce agency Delhi NCR">
+  <meta name="keywords" content="BrandOps, brandops.shop, marketplace management India, marketplace management UAE, Amazon seller account management, Amazon India account management, Amazon.ae seller services, Noon seller account management, Noon marketplace UAE, Flipkart seller management, Myntra seller onboarding, Ajio seller management, marketplace automation, ecommerce tech stack, inventory sync across marketplaces, Shopify Amazon Noon integration, Meesho seller management, ecommerce account management agency, marketplace listing optimisation, Amazon SEO, A+ content, Amazon PPC, organic marketplace growth, Shopify store builder India, Shopify agency India, GST filing for ecommerce sellers, UAE VAT registration, company formation India, Pvt Ltd registration, LLP registration, Ajman free zone company, ecommerce agency Delhi NCR">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="BrandOps — House of Notmade Studio">
   <meta name="geo.region" content="IN-DL">
@@ -29,7 +29,7 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is marketplace management?", "acceptedAnswer": {"@type": "Answer", "text": "Marketplace management means we run your seller accounts end to end: onboarding and brand registry, catalogue and listing creation, keyword and SEO optimisation, A+ content, pricing, inventory and order ops, ads, reviews and account health."}}, {"@type": "Question", "name": "Which marketplaces does BrandOps manage?", "acceptedAnswer": {"@type": "Answer", "text": "In India: Amazon, Flipkart, Myntra, Ajio and Meesho. In the UAE: Amazon.ae and Noon. We can also run your own Shopify store alongside them."}}, {"@type": "Question", "name": "How do you grow our sales organically?", "acceptedAnswer": {"@type": "Answer", "text": "We focus on search-first growth: keyword research, optimised titles, bullets and backend search terms, better images and A+ content, review and rating improvement, competitive pricing and in-stock reliability, so listings rank higher without depending only on paid ads."}}, {"@type": "Question", "name": "Can you help us start selling in the UAE?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We handle UAE company setup, VAT registration, Noon and Amazon.ae seller onboarding, listings and fulfilment planning, so you can sell in India and UAE from one team."}}, {"@type": "Question", "name": "Do you also handle GST, VAT and company registration?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. GST filing, UAE VAT registration, Pvt Ltd and LLP formation in India, and free zone company setup in the UAE are part of BrandOps."}}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -467,6 +467,44 @@
       letter-spacing: 0.02em;
     }
 
+
+
+    /* ─── TECH LOOK ─── */
+    :root { --f-mono: 'JetBrains Mono', ui-monospace, monospace; }
+    .hero { position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(13,27,75,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(13,27,75,0.06) 1px, transparent 1px);
+      background-size: 44px 44px; -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%); }
+    .hero::after { content: ""; position: absolute; width: 520px; height: 520px; right: -140px; top: -160px; z-index: 0; pointer-events: none;
+      background: radial-gradient(circle, rgba(245,166,35,0.22), transparent 65%); }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-eyebrow, .section-tag { font-family: var(--f-mono); }
+    .plat-section { padding: 2.5rem 2rem; background: var(--navy-dark); color: var(--white); }
+    .plat-inner { max-width: 1100px; margin: 0 auto; }
+    .plat-label { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+    .plat-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .plat-chip { font-family: var(--f-head); font-weight: 800; font-size: 1rem; letter-spacing: -0.01em; padding: 0.65rem 1.1rem; border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; background: rgba(255,255,255,0.05); display: inline-flex; align-items: center; gap: 0.55rem; transition: border-color 0.2s, transform 0.2s; }
+    .plat-chip:hover { border-color: var(--orange); transform: translateY(-2px); }
+    .plat-chip i { width: 7px; height: 7px; border-radius: 50%; background: #28c840; box-shadow: 0 0 8px #28c840; animation: platpulse 2s infinite; }
+    @keyframes platpulse { 50% { opacity: 0.35; } }
+    .tech-section { padding: 5rem 2rem; background: var(--white); }
+    .tech-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .tech-feats { margin-top: 1.75rem; display: grid; gap: 1.1rem; }
+    .tech-feat { display: flex; gap: 0.9rem; }
+    .tech-feat b { font-family: var(--f-mono); color: var(--orange); font-size: 0.85rem; padding-top: 0.15rem; }
+    .tech-feat div { font-size: 0.92rem; color: var(--muted); line-height: 1.55; }
+    .tech-feat strong { display: block; font-family: var(--f-head); color: var(--navy); margin-bottom: 0.15rem; }
+    .term { background: #0a1020; border-radius: 16px; box-shadow: 0 24px 60px rgba(13,27,75,0.35); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+    .term-bar { display: flex; align-items: center; gap: 6px; padding: 0.7rem 1rem; background: #121a30; }
+    .term-bar span { width: 10px; height: 10px; border-radius: 50%; }
+    .term-bar span:nth-child(1) { background: #ff5f57; } .term-bar span:nth-child(2) { background: #febc2e; } .term-bar span:nth-child(3) { background: #28c840; }
+    .term-bar em { margin-left: auto; font-style: normal; font-family: var(--f-mono); font-size: 0.68rem; color: #6b7a99; }
+    .term-body { padding: 1.25rem; font-family: var(--f-mono); font-size: 0.78rem; line-height: 1.9; color: #c9d4f0; min-height: 300px; }
+    .term-body .ln { opacity: 0; transform: translateY(4px); transition: all 0.35s; white-space: pre-wrap; }
+    .term-body .ln.show { opacity: 1; transform: none; }
+    .term-body .p { color: var(--orange); } .term-body .ok { color: #28c840; } .term-body .dim { color: #6b7a99; }
+    @media (max-width: 900px) { .tech-inner { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .plat-section, .tech-section { padding: 2.5rem 1.25rem; } .term-body { font-size: 0.68rem; } }
 
     /* ─── MARKETPLACES ─── */
     .mp-section { padding: 5rem 2rem; background: var(--navy); color: var(--white); }
@@ -1021,6 +1059,7 @@
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#marketplaces">Marketplaces</a></li>
+        <li><a href="/gcc.html">GCC</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#countries">Countries</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1098,6 +1137,14 @@
       </div>
     </div>
   </div>
+
+  <!-- PLATFORMS -->
+  <section class="plat-section" aria-label="Platforms we work on">
+    <div class="plat-inner">
+      <div class="plat-label">// Platforms we build &amp; manage on</div>
+      <div class="plat-row"><span class="plat-chip"><i></i>Shopify</span><span class="plat-chip"><i></i>Amazon</span><span class="plat-chip"><i></i>Noon</span><span class="plat-chip"><i></i>Flipkart</span><span class="plat-chip"><i></i>Myntra</span><span class="plat-chip"><i></i>Ajio</span><span class="plat-chip"><i></i>Meesho</span></div>
+    </div>
+  </section>
 
   <!-- STATS -->
   <section class="stats-section">
@@ -1187,6 +1234,37 @@
           <span class="tag">LLP</span>
           <span class="tag">7-Day Setup</span>
           <span class="tag">Multi-Country</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH -->
+  <section class="tech-section" id="tech">
+    <div class="tech-inner">
+      <div class="reveal">
+        <div class="section-tag">Tech-first operations</div>
+        <h2 class="section-title">One system behind every channel.</h2>
+        <p class="section-sub">Your Shopify store, Amazon, Noon and Indian marketplaces run from one connected workflow — less manual work, fewer errors.</p>
+        <div class="tech-feats">
+          <div class="tech-feat"><b>01</b><div><strong>Inventory &amp; order sync</strong>Stock and orders kept consistent across Shopify and marketplaces.</div></div>
+          <div class="tech-feat"><b>02</b><div><strong>Automated reporting</strong>Sales, ads and GST/VAT-ready reports without spreadsheets.</div></div>
+          <div class="tech-feat"><b>03</b><div><strong>Listing &amp; keyword tooling</strong>Bulk catalogue updates and search-optimised content at scale.</div></div>
+          <div class="tech-feat"><b>04</b><div><strong>Custom integrations</strong>APIs, dashboards and automations built around your brand.</div></div>
+        </div>
+      </div>
+      <div class="term reveal" aria-label="Illustrative workflow">
+        <div class="term-bar"><span></span><span></span><span></span><em>brandops · sync (illustrative)</em></div>
+        <div class="term-body" id="term-body">
+          <div class="ln"><span class="p">$</span> brandops sync --channels all</div>
+          <div class="ln dim">connecting shopify ........ <span class="ok">ok</span></div>
+          <div class="ln dim">connecting amazon.in ...... <span class="ok">ok</span></div>
+          <div class="ln dim">connecting amazon.ae ...... <span class="ok">ok</span></div>
+          <div class="ln dim">connecting noon ........... <span class="ok">ok</span></div>
+          <div class="ln dim">connecting flipkart / myntra / ajio / meesho ... <span class="ok">ok</span></div>
+          <div class="ln"><span class="p">$</span> brandops optimise --listings --keywords</div>
+          <div class="ln dim">inventory synced · orders unified · listings updated</div>
+          <div class="ln"><span class="ok">✓</span> all channels in sync</div>
         </div>
       </div>
     </div>
@@ -1588,6 +1666,15 @@
       });
     }, { threshold: 0.2 });
     countryCards.forEach(el => countryObs.observe(el));
+
+    // ── TERMINAL TYPE-IN
+    (function () {
+      const lines = document.querySelectorAll('#term-body .ln');
+      const obs = new IntersectionObserver((en) => {
+        if (en[0].isIntersecting) { lines.forEach((l, i) => setTimeout(() => l.classList.add('show'), i * 450)); obs.disconnect(); }
+      }, { threshold: 0.3 });
+      const t = document.getElementById('term-body'); if (t) obs.observe(t);
+    })();
 
     // ── WHATSAPP WIDGET
     const waPop = document.getElementById('wa-pop');
